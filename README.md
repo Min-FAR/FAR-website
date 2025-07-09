@@ -1,8 +1,4 @@
-from zipfile import ZipFile
-import os
-
-# Create the HTML content
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -70,37 +66,3 @@ html_content = """<!DOCTYPE html>
   </footer>
 </body>
 </html>
-"""
-
-# Create a README with simple instructions
-readme_content = """HOW TO OPEN YOUR FAR WEBSITE
-
-1. Copy this folder to your computer.
-2. Double-click the 'index.html' file.
-3. Your website will open in the browser!
-
-TO UPLOAD ONLINE (Netlify):
-- Visit https://netlify.com
-- Login with Google
-- Click 'Add new site' > 'Deploy manually'
-- Drag and drop this index.html file
-- Done! Your site is live.
-"""
-
-# Save both files to a directory
-folder_path = "/mnt/data/far_website"
-os.makedirs(folder_path, exist_ok=True)
-
-with open(os.path.join(folder_path, "index.html"), "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-with open(os.path.join(folder_path, "README.txt"), "w", encoding="utf-8") as f:
-    f.write(readme_content)
-
-# Create a zip file
-zip_path = "/mnt/data/FAR_FirstAidRider_Site.zip"
-with ZipFile(zip_path, 'w') as zipf:
-    zipf.write(os.path.join(folder_path, "index.html"), arcname="index.html")
-    zipf.write(os.path.join(folder_path, "README.txt"), arcname="README.txt")
-
-zip_path
